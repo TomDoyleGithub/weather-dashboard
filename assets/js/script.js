@@ -1,26 +1,25 @@
-// Fetch catches the coords
-function getCoords (input) {
-    fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + input + '&appid=89719a9ad250bef0b172b9a3a8360716')
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function (data) {
-        // Push the data below to the object/array
-        var lat = data.city.coord.lat
-        var long = data.city.coord.lon
-        console.log(lat, long)
-    })
-    
+
+// Gather coordinates
+const coordsRequest = async (input) => {
+    const coordsResponse = await fetch ("https://api.openweathermap.org/data/2.5/forecast?q=" + input + "&appid=89719a9ad250bef0b172b9a3a8360716")
+    const json = await coordsResponse.json();
+    var latitude = json.city.coord.lat;
+    var longitude = json.city.coord.lat;
+    weatherConditions(latitude, longitude);
 }
 
-// Write function that collects city input from page and validates it - make sure it auto selects and runs no errors
+// Gathers weather information
+const weatherConditions = async (lat, lon) => {
+    const weatherResponse =  await fetch ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=89719a9ad250bef0b172b9a3a8360716")
+    const weatherJson = await weatherResponse.json();
+    console.log(weatherJson);
+    init();
+}
 
 
-// Passes the selected city into the function
-getCoords("sydney");
+coordsRequest("sydney")
 
-
-// Make an object/array that stores the coords
-
-// A FETCH FUNCTION THAT GATHERS THE REQUIRED WEATHER INFORMATION
-
+// Initiation of page is run after the fetch requests - put this AT THE END AFTER REQUESTS
+function init () {
+    console.log("Code starting...")
+}
