@@ -1,3 +1,4 @@
+// Code Below toggles search section
 $("#search").on("click", function(){
     $(".search-section").css("display", "block");
 })
@@ -53,7 +54,16 @@ const weatherConditions = async (lat, lon) => {
     init(weatherArray, tempArray, windArray, humidArray, uvIndex);
 }
 
-coordsRequest("Redland Bay");
+// Runs the search when the search button is clicked
+$(".search-button").on("click", function(event) {
+    event.preventDefault();
+    var inputLocation = $(".search-input").val()
+    if(inputLocation) {
+        coordsRequest(inputLocation);
+        $(".search-section").css("display", "none");
+    }
+})
+
 
 // Initiation of page is run after the fetch requests - put this AT THE END AFTER REQUESTS
 function init (weather, temperatues, winds, humidity, uvIndex) {
@@ -61,6 +71,7 @@ function init (weather, temperatues, winds, humidity, uvIndex) {
     mainPageDisplay(weather, temperatues, winds, humidity, uvIndex);
 }
 
+// The functions that displays the main display in the HTML
 function mainPageDisplay (weather, temperatues, winds, humidity, uvIndex) {
     $(".weather").text(weather[0])
     $(".icon").attr("src", "./assets/images/weather/"+ weather[0] + ".svg")
@@ -69,6 +80,9 @@ function mainPageDisplay (weather, temperatues, winds, humidity, uvIndex) {
     $(".wind").text(winds[0] + " mph")
     $(".uv").text(uvIndex);
 }
+
+// SEARCH VALIDATION
+// TIME DISPLAY
 
 // 1. Finish page styling and HTML
 // 2. Wrtie the code to append the data to the page just from JS input
