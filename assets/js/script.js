@@ -11,10 +11,21 @@ $(".cross").on("click", function() {
 const coordsRequest = async (input) => {
     $(".city").text(input)
     const coordsResponse = await fetch ("https://api.openweathermap.org/data/2.5/forecast?q=" + input + "&appid=89719a9ad250bef0b172b9a3a8360716")
-    const json = await coordsResponse.json();
-    var latitude = json.city.coord.lat;
-    var longitude = json.city.coord.lat;
-    weatherConditions(latitude, longitude);
+    if(coordsResponse.ok) {
+        const json = await coordsResponse.json();
+        var latitude = json.city.coord.lat;
+        var longitude = json.city.coord.lat;
+        weatherConditions(latitude, longitude);
+    } else {
+        $(".city").text("No Location");
+        $(".date").text("Please search a valid location");
+        $(".temp").text("");
+        $(".icon").css("display", "none");
+        $(".weather").text("");
+        $(".humidity").text("");
+        $(".wind").text("");
+        $(".uv").text("");
+    }
 }
 
 // Gathers weather information
@@ -58,6 +69,7 @@ const weatherConditions = async (lat, lon) => {
 $(".search-button").on("click", function(event) {
     event.preventDefault();
     var inputLocation = $(".search-input").val()
+    inputLocation = inputLocation.trim();
     if(inputLocation) {
         coordsRequest(inputLocation);
         $(".search-section").css("display", "none");
@@ -75,17 +87,17 @@ function init (weather, temperatues, winds, humidity, uvIndex) {
 function mainPageDisplay (weather, temperatues, winds, humidity, uvIndex) {
     $(".weather").text(weather[0])
     $(".icon").attr("src", "./assets/images/weather/"+ weather[0] + ".svg")
+    $(".icon").css("display", "block");
     $(".temp").text(Math.round(temperatues[0]) + "°")
     $(".humidity").text(humidity[0] + "%");
     $(".wind").text(winds[0] + " mph")
     $(".uv").text(uvIndex);
 }
 
-// SEARCH VALIDATION
+
 // TIME DISPLAY
+// DEFAULT SYDNEY DISPLAY
 
 // 1. Finish page styling and HTML
 // 2. Wrtie the code to append the data to the page just from JS input
-// 3. Make search section functional
 // 4. Make storage section function
-// 5. Add loading page
