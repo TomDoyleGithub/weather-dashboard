@@ -14,7 +14,7 @@ const coordsRequest = async (input) => {
     if(coordsResponse.ok) {
         const json = await coordsResponse.json();
         var latitude = json.city.coord.lat;
-        var longitude = json.city.coord.lat;
+        var longitude = json.city.coord.lon;
         weatherConditions(latitude, longitude);
     } else {
         $(".city").text("No Location");
@@ -97,7 +97,6 @@ function mainPageDisplay (weather, temperatues, winds, humidity, uvIndex) {
 
 // TIME DISPLAY
 // DEFAULT SYDNEY DISPLAY
-
-// 1. Finish page styling and HTML
-// 2. Wrtie the code to append the data to the page just from JS input
-// 4. Make storage section function
+// ADD FIVE DAY FORECAST
+// ADD UV COLOR CHANGE
+// STORAGE FUNCTIONING AND PAGE
