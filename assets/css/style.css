@@ -79,7 +79,7 @@ nav img:hover {
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
-    box-shadow: 5px 5px #33333325;
+    box-shadow: 5px 5px #3333330e;
     border: 2px solid #3333330e;
     padding: 20px;
 }
@@ -112,6 +112,56 @@ nav img:hover {
     grid-template: repeat(3, 1fr) / 3fr 1fr;
 }
 
+.search-section {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+    z-index: 10000;
+    display: none;
+}
+
+.cross {
+    position: absolute;
+    right: 105px;
+    top: 50px;
+    width: 23px;
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.cross:hover {
+    opacity: 50%;
+}
+
+.search-form {
+    margin-left: auto;
+    margin-right: auto;
+    height: 140px;
+    margin-top: 200px;
+    display: grid;
+    row-gap: 5px;
+    justify-content: center;
+}
+
+.search-form input {
+    border: none;
+    border-radius: 10px;
+}
+
+.search-input {
+    padding: 0px 10px;
+    text-align: center;
+}
+
+.search-button {
+    width: 80px;
+    height: 50px;
+    margin: auto;
+    font-size: 15px;
+}
+
+
 @media screen and (max-width: 490px) {
     nav {
         padding: 0px 40px; 
@@ -139,5 +189,10 @@ nav img:hover {
     .stats {
         width: 70%;
         font-size: 11px;
+    }
+
+    .cross {
+        right: 40px;
+        width: 18px;
     }
 }

@@ -1,6 +1,14 @@
+$("#search").on("click", function(){
+    $(".search-section").css("display", "block");
+})
+
+$(".cross").on("click", function() {
+    $(".search-section").css("display", "none");
+})
 
 // Gather coordinates
 const coordsRequest = async (input) => {
+    $(".city").text(input)
     const coordsResponse = await fetch ("https://api.openweathermap.org/data/2.5/forecast?q=" + input + "&appid=89719a9ad250bef0b172b9a3a8360716")
     const json = await coordsResponse.json();
     var latitude = json.city.coord.lat;
@@ -12,24 +20,24 @@ const coordsRequest = async (input) => {
 const weatherConditions = async (lat, lon) => {
     const weatherResponse =  await fetch ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=metric&units=imperial&appid=89719a9ad250bef0b172b9a3a8360716")
     const weatherJson = await weatherResponse.json();
-    // console.log(weatherJson);
-    forecastArray = [];
+    console.log(weatherJson);
+    weatherArray = [];
     tempArray = [];
     windArray = [];
     humidArray = [];
     uvIndex = weatherJson.current.uvi;
-    forecastArray[0] = weatherJson.current.weather[0].id;
-    forecastArray[1] =  weatherJson.daily[0].weather[0].id;
-    forecastArray[2] =  weatherJson.daily[1].weather[0].id;
-    forecastArray[3] =  weatherJson.daily[2].weather[0].id;
-    forecastArray[4] =  weatherJson.daily[3].weather[0].id;
-    forecastArray[5] =  weatherJson.daily[4].weather[0].id;
+    weatherArray[0] = weatherJson.current.weather[0].main;
+    weatherArray[1] =  weatherJson.daily[0].weather[0].main;
+    weatherArray[2] =  weatherJson.daily[1].weather[0].main;
+    weatherArray[3] =  weatherJson.daily[2].weather[0].main;
+    weatherArray[4] =  weatherJson.daily[3].weather[0].main;
+    weatherArray[5] =  weatherJson.daily[4].weather[0].main;
     tempArray[0] = weatherJson.current.temp;
-    tempArray[1] = weatherJson.daily[0].temp.day;
-    tempArray[2] = weatherJson.daily[1].temp.day;
-    tempArray[3] = weatherJson.daily[2].temp.day;
-    tempArray[4] = weatherJson.daily[3].temp.day;
-    tempArray[5] = weatherJson.daily[4].temp.day;
+    tempArray[1] = weatherJson.daily[0].temp.max;
+    tempArray[2] = weatherJson.daily[1].temp.max;
+    tempArray[3] = weatherJson.daily[2].temp.max;
+    tempArray[4] = weatherJson.daily[3].temp.max;
+    tempArray[5] = weatherJson.daily[4].temp.max;
     windArray[0] = weatherJson.current.wind_speed;
     windArray[1] = weatherJson.daily[0].wind_speed;
     windArray[2] = weatherJson.daily[1].wind_speed;
@@ -42,14 +50,28 @@ const weatherConditions = async (lat, lon) => {
     humidArray[3] = weatherJson.daily[2].humidity;
     humidArray[4] = weatherJson.daily[3].humidity;
     humidArray[5] = weatherJson.daily[4].humidity;
-    init(forecastArray, tempArray, windArray, humidArray, uvIndex);
+    init(weatherArray, tempArray, windArray, humidArray, uvIndex);
 }
 
-
-coordsRequest("brisbane")
+coordsRequest("Redland Bay");
 
 // Initiation of page is run after the fetch requests - put this AT THE END AFTER REQUESTS
-function init (forecast, temperatues, winds, humidity, uvIndex) {
-    console.log(forecast, temperatues, winds, humidity, uvIndex);
-    // Sort this information into objects
+function init (weather, temperatues, winds, humidity, uvIndex) {
+    console.log(weather, temperatues, winds, humidity, uvIndex);
+    mainPageDisplay(weather, temperatues, winds, humidity, uvIndex);
 }
+
+function mainPageDisplay (weather, temperatues, winds, humidity, uvIndex) {
+    $(".weather").text(weather[0])
+    $(".icon").attr("src", "./assets/images/weather/"+ weather[0] + ".svg")
+    $(".temp").text(Math.round(temperatues[0]) + "°")
+    $(".humidity").text(humidity[0] + "%");
+    $(".wind").text(winds[0] + " mph")
+    $(".uv").text(uvIndex);
+}
+
+// 1. Finish page styling and HTML
+// 2. Wrtie the code to append the data to the page just from JS input
+// 3. Make search section functional
+// 4. Make storage section function
+// 5. Add loading page

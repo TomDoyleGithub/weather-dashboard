@@ -13,32 +13,41 @@
     <link rel="stylesheet" href="https://use.typekit.net/nwd3ukw.css">
 </head>
 <body>
+<section class="search-section">
+    <div>
+        <img class="cross" src="./assets/images/close.svg"/>
+    </div>
+    <form class="search-form aktiv-grotesk-medium">
+        <input type="text" class="search-input">
+        <input type="submit" value="Search" class="search-button">
+    </form>
+</section>
 <header>
     <!-- Main navigation -->
     <nav>
-        <img src="./assets/images/menu.svg"/>
+        <img id="hamburger" src="./assets/images/menu.svg"/>
         <p class="city aktiv-grotesk-bold">Sydney</p>
-        <img src="./assets/images/search.svg"/>
+        <img id="search" src="./assets/images/search.svg"/>
     </nav>
 </header>
 <main>
     <p class="date aktiv-grotesk-thin">Sun Dec 01 2019</p>
     <section class="weather-container">
         <p class="temp aktiv-grotesk-regular">23°</p>
-        <img class="icon" src="./assets/images/weather/003-cloudy.svg"/>
+        <img class="icon" src="./assets/images/weather/009-snowy.svg"/>
         <p></p>
         <p class="weather aktiv-grotesk-thin">Overcast</p>
     </section>
     <section class="stats aktiv-grotesk-thin">
         <p>Humidity</p>
-        <p>65%</p>
+        <p class="humidity">65%</p>
         <p>Wind</p>
-        <p>5.68 mph</p>
+        <p class="wind">5.68 mph</p>
         <p>UV Index</p>
-        <p>0.6</p>
+        <p class="uv">0.6</p>
     </section>
 </main>
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./assets/js/script.js"></script>
 </body>
 </html>
