@@ -101,6 +101,13 @@ function mainPageDisplay (weather, temperatues, winds, humidity, uvIndex) {
     $(".humidity").text(humidity[0] + "%");
     $(".wind").text(winds[0] + " mph")
     $(".uv").text(uvIndex);
+    if (uvIndex >= 0 && uvIndex < 3) {
+        $(".uv").css("color", "green");
+    } else if (uvIndex >= 3 && uvIndex < 6) {
+        $(".uv").css("color", "orange");
+    } else {
+        $(".uv").css("color", "red");
+    }
 }
 
 function dayOneDisplay (weather, temperatues, winds, humidity) {
@@ -145,8 +152,6 @@ function dayFiveDisplay (weather, temperatues, winds, humidity) {
 
 
 // TIME DISPLAY
-// ADD UV COLOR CHANGE
 // STORAGE FUNCTIONING AND PAGE
-// Add Capitols to input
 // ADD COMMENTS
 // DO README
