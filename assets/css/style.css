@@ -73,7 +73,6 @@ nav img:hover {
 .weather-container {
     display: grid;
     grid-template: 2fr 1fr / 1fr 1fr;
-    height: 150px;
     width: 400px;
     margin-top: 40px;
     margin-left: auto;
@@ -93,6 +92,7 @@ nav img:hover {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    padding-right: 15px;
 }
 
 .icon {
@@ -161,7 +161,30 @@ nav img:hover {
     font-size: 15px;
 }
 
+.carousel-container {
+    position: relative;
+}
 
+.first-set {
+    height: 150px;
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template: 100% / 1fr 1fr;
+    column-gap: 20px;
+}
+
+.card-one,
+ .card-two {
+     border-radius: 10px;
+ }
+
+ .indicate {
+     position: absolute;
+     bottom: -60px;
+ }
+
+ 
 @media screen and (max-width: 490px) {
     nav {
         padding: 0px 40px; 
