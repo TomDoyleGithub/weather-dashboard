@@ -185,6 +185,7 @@ nav img:hover {
 .forecast-image {
     width: 40px;
     opacity: 80%;
+    margin-bottom: 5px;
 }
 
 .card-one,

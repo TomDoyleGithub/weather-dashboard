@@ -81,6 +81,11 @@ $(".search-button").on("click", function(event) {
 function init (weather, temperatues, winds, humidity, uvIndex) {
     console.log(weather, temperatues, winds, humidity, uvIndex);
     mainPageDisplay(weather, temperatues, winds, humidity, uvIndex);
+    dayOneDisplay(weather, temperatues, winds, humidity);
+    dayTwoDisplay(weather, temperatues, winds, humidity);
+    dayThreeDisplay(weather, temperatues, winds, humidity);
+    dayFourDisplay(weather, temperatues, winds, humidity);
+    dayFiveDisplay(weather, temperatues, winds, humidity);
 }
 
 // The functions that displays the main display in the HTML
@@ -94,9 +99,44 @@ function mainPageDisplay (weather, temperatues, winds, humidity, uvIndex) {
     $(".uv").text(uvIndex);
 }
 
+function dayOneDisplay (weather, temperatues, winds, humidity) {
+    $(".day-one-icon").attr("src", "./assets/images/weather/"+ weather[1] + ".svg") 
+    $(".temp-one").text(Math.round(temperatues[1]) + "°")
+    $(".humid-one").text(humidity[1] + "%");
+    $(".wind-one").text(winds[1])
+}
 
-// TIME DISPLAY
+function dayTwoDisplay (weather, temperatues, winds, humidity) {
+    $(".day-two-icon").attr("src", "./assets/images/weather/"+ weather[2] + ".svg") 
+    $(".temp-two").text(Math.round(temperatues[2]) + "°")
+    $(".humid-two").text(humidity[2] + "%");
+    $(".wind-two").text(winds[2])
+}
+
+function dayThreeDisplay (weather, temperatues, winds, humidity) {
+    $(".day-three-icon").attr("src", "./assets/images/weather/"+ weather[3] + ".svg") 
+    $(".temp-three").text(Math.round(temperatues[3]) + "°")
+    $(".humid-three").text(humidity[3] + "%");
+    $(".wind-three").text(winds[3])
+}
+
+function dayFourDisplay (weather, temperatues, winds, humidity) {
+    $(".day-four-icon").attr("src", "./assets/images/weather/"+ weather[4] + ".svg") 
+    $(".temp-four").text(Math.round(temperatues[4]) + "°")
+    $(".humid-four").text(humidity[4] + "%");
+    $(".wind-four").text(winds[4])
+}
+
+function dayFiveDisplay (weather, temperatues, winds, humidity) {
+    $(".day-five-icon").attr("src", "./assets/images/weather/"+ weather[5] + ".svg") 
+    $(".temp-five").text(Math.round(temperatues[5]) + "°")
+    $(".humid-five").text(humidity[5] + "%");
+    $(".wind-five").text(winds[5])
+}
+
 // DEFAULT SYDNEY DISPLAY
-// ADD FIVE DAY FORECAST
+// TIME DISPLAY
 // ADD UV COLOR CHANGE
 // STORAGE FUNCTIONING AND PAGE
+// ADD COMMENTS
+// DO README
