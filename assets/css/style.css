@@ -163,15 +163,28 @@ nav img:hover {
 
 .carousel-container {
     position: relative;
+    margin-top: 30px;
 }
 
 .first-set {
     height: 150px;
-    width: 80%;
+    width: 60%;
     margin: auto;
     display: grid;
     grid-template: 100% / 1fr 1fr;
     column-gap: 20px;
+    font-size: 11px;
+    text-align: center;
+}
+
+.forecast-header {
+    margin-top: 18px;
+    opacity: 90%;
+}
+
+.forecast-image {
+    width: 40px;
+    opacity: 80%;
 }
 
 .card-one,
@@ -179,12 +192,11 @@ nav img:hover {
      border-radius: 10px;
  }
 
- .indicate {
-     position: absolute;
-     bottom: -60px;
+ .weather-display {
+     font-size: 12px;
  }
 
- 
+
 @media screen and (max-width: 490px) {
     nav {
         padding: 0px 40px; 
@@ -217,5 +229,9 @@ nav img:hover {
     .cross {
         right: 40px;
         width: 18px;
+    }
+
+    .first-set {
+        width: 80%;
     }
 }
