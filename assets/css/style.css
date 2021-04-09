@@ -112,13 +112,20 @@ nav img:hover {
     grid-template: repeat(3, 1fr) / 3fr 1fr;
 }
 
-.search-section {
+.search-section,
+ .save-section {
     position: absolute;
     width: 100%;
     height: 100%;
     background-color: var(--white);
     z-index: 10000;
     display: none;
+}
+
+.location-list {
+    height: 500px;
+    width: 80%;
+    margin: 100px auto;
 }
 
 .cross {

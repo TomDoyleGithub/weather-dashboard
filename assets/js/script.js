@@ -3,8 +3,13 @@ $("#search").on("click", function(){
     $(".search-section").css("display", "block");
 })
 
+$("#hamburger").on("click", function(){
+    $(".save-section").css("display", "block");
+})
+
 $(".cross").on("click", function() {
     $(".search-section").css("display", "none");
+    $(".save-section").css("display", "none");
 })
 
 // Gather coordinates
