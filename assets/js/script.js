@@ -66,6 +66,7 @@ const weatherConditions = async (lat, lon) => {
     init(weatherArray, tempArray, windArray, humidArray, uvIndex);
 }
 
+coordsRequest("Sydney");
 // Runs the search when the search button is clicked
 $(".search-button").on("click", function(event) {
     event.preventDefault();
@@ -142,10 +143,10 @@ function dayFiveDisplay (weather, temperatues, winds, humidity) {
     $(".wind-five").text(winds[5])
 }
 
-// DEFAULT SYDNEY DISPLAY
+
 // TIME DISPLAY
 // ADD UV COLOR CHANGE
 // STORAGE FUNCTIONING AND PAGE
-// Error testing
+// Add Capitols to input
 // ADD COMMENTS
 // DO README
