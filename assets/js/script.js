@@ -12,6 +12,8 @@ $(".cross").on("click", function() {
     $(".save-section").css("display", "none");
 })
 
+
+
 // Gather coordinates
 const coordsRequest = async (input) => {
     $(".city").text(input)
@@ -38,12 +40,13 @@ const coordsRequest = async (input) => {
 const weatherConditions = async (lat, lon) => {
     const weatherResponse =  await fetch ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=metric&units=imperial&appid=89719a9ad250bef0b172b9a3a8360716")
     const weatherJson = await weatherResponse.json();
-    console.log(weatherJson);
+    // console.log(weatherJson);
     weatherArray = [];
     tempArray = [];
     windArray = [];
     humidArray = [];
     uvIndex = weatherJson.current.uvi;
+    var offset = weatherJson.timezone_offset;
     weatherArray[0] = weatherJson.current.weather[0].main;
     weatherArray[1] =  weatherJson.daily[0].weather[0].main;
     weatherArray[2] =  weatherJson.daily[1].weather[0].main;
@@ -68,7 +71,7 @@ const weatherConditions = async (lat, lon) => {
     humidArray[3] = weatherJson.daily[2].humidity;
     humidArray[4] = weatherJson.daily[3].humidity;
     humidArray[5] = weatherJson.daily[4].humidity;
-    init(weatherArray, tempArray, windArray, humidArray, uvIndex);
+    init(weatherArray, tempArray, windArray, humidArray, uvIndex, offset);
 }
 
 coordsRequest("Sydney");
@@ -85,9 +88,10 @@ $(".search-button").on("click", function(event) {
 
 
 // Initiation of page is run after the fetch requests - put this AT THE END AFTER REQUESTS
-function init (weather, temperatues, winds, humidity, uvIndex) {
+function init (weather, temperatues, winds, humidity, uvIndex, offset) {
     $(".carousel-container").css("display", "block");
-    console.log(weather, temperatues, winds, humidity, uvIndex);
+    // console.log(weather, temperatues, winds, humidity, uvIndex);
+    timeDisplay(offset);
     mainPageDisplay(weather, temperatues, winds, humidity, uvIndex);
     dayOneDisplay(weather, temperatues, winds, humidity);
     dayTwoDisplay(weather, temperatues, winds, humidity);
@@ -96,9 +100,23 @@ function init (weather, temperatues, winds, humidity, uvIndex) {
     dayFiveDisplay(weather, temperatues, winds, humidity);
 }
 
+
+function timeDisplay (offset) {
+    d = new Date()
+    localTime = d.getTime()
+    localOffset = d.getTimezoneOffset() * 60000
+    utc = localTime + localOffset
+    var time = utc + (1000 * offset)
+    nd = new Date(time) + '';
+    splitDate = nd.split(" ");
+    finalDate = splitDate.slice(0, 4);
+    stringDate = finalDate.join(" ")
+    $(".date").text(stringDate)
+    
+    // THE USE THIS DATA WITH MOMENT TO DISPLAY ALL THINGS RELATED TO DATES
+}
 // The functions that displays the main display in the HTML
 function mainPageDisplay (weather, temperatues, winds, humidity, uvIndex) {
-    $(".date").text("No Date")
     $(".weather").text(weather[0])
     $(".icon").attr("src", "./assets/images/weather/"+ weather[0] + ".svg")
     $(".icon").css("display", "block");
