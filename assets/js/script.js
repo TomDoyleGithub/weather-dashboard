@@ -82,10 +82,14 @@ $(".search-button").on("click", function(event) {
     inputLocation = inputLocation.trim();
     if(inputLocation) {
         coordsRequest(inputLocation);
+        historyAdd(inputLocation);
         $(".search-section").css("display", "none");
     }
 })
 
+function historyAdd(input) {
+    $(".location-list").append("<section class='loca'>" + input + "</section>")
+};
 
 // Initiation of page is run after the fetch requests - put this AT THE END AFTER REQUESTS
 function init (weather, temperatues, winds, humidity, uvIndex, offset) {
@@ -112,6 +116,22 @@ function timeDisplay (offset) {
     finalDate = splitDate.slice(0, 4);
     stringDate = finalDate.join(" ")
     $(".date").text(stringDate)
+   
+    var firstDay = moment(stringDate).add(1, 'd')._d;
+    firstDayDate = moment(firstDay).format("dddd");
+    var secondDay = moment(stringDate).add(2, 'd')._d;
+    secondDayDate = moment(secondDay).format("dddd");
+    var thirdDay = moment(stringDate).add(3, 'd')._d;
+    thirdDayDate = moment(thirdDay).format("dddd");
+    var fourthDay = moment(stringDate).add(4, 'd')._d;
+    fourthDayDate = moment(fourthDay).format("dddd");
+    var fifthDay = moment(stringDate).add(5, 'd')._d;
+    fifthDayDate = moment(fifthDay).format("dddd");
+    $(".header-one").text(firstDayDate);
+    $(".header-two").text(secondDayDate);
+    $(".header-three").text(thirdDayDate);
+    $(".header-four").text(fourthDayDate);
+    $(".header-five").text(fifthDayDate);
     
     // THE USE THIS DATA WITH MOMENT TO DISPLAY ALL THINGS RELATED TO DATES
 }
@@ -134,7 +154,6 @@ function mainPageDisplay (weather, temperatues, winds, humidity, uvIndex) {
 }
 
 function dayOneDisplay (weather, temperatues, winds, humidity) {
-    $(".header-one").text("Monday")
     $(".day-one-icon").attr("src", "./assets/images/weather/"+ weather[1] + ".svg") 
     $(".temp-one").text(Math.round(temperatues[1]) + "°")
     $(".humid-one").text(humidity[1] + "%");
@@ -142,7 +161,6 @@ function dayOneDisplay (weather, temperatues, winds, humidity) {
 }
 
 function dayTwoDisplay (weather, temperatues, winds, humidity) {
-    $(".header-two").text("Tuesday")
     $(".day-two-icon").attr("src", "./assets/images/weather/"+ weather[2] + ".svg") 
     $(".temp-two").text(Math.round(temperatues[2]) + "°")
     $(".humid-two").text(humidity[2] + "%");
@@ -150,7 +168,6 @@ function dayTwoDisplay (weather, temperatues, winds, humidity) {
 }
 
 function dayThreeDisplay (weather, temperatues, winds, humidity) {
-    $(".header-three").text("Wednesday")
     $(".day-three-icon").attr("src", "./assets/images/weather/"+ weather[3] + ".svg") 
     $(".temp-three").text(Math.round(temperatues[3]) + "°")
     $(".humid-three").text(humidity[3] + "%");
@@ -158,7 +175,6 @@ function dayThreeDisplay (weather, temperatues, winds, humidity) {
 }
 
 function dayFourDisplay (weather, temperatues, winds, humidity) {
-    $(".header-four").text("Thursday")
     $(".day-four-icon").attr("src", "./assets/images/weather/"+ weather[4] + ".svg")
     $(".temp-four").text(Math.round(temperatues[4]) + "°")
     $(".humid-four").text(humidity[4] + "%");
@@ -166,7 +182,6 @@ function dayFourDisplay (weather, temperatues, winds, humidity) {
 }
 
 function dayFiveDisplay (weather, temperatues, winds, humidity) {
-    $(".header-five").text("Friday")
     $(".day-five-icon").attr("src", "./assets/images/weather/"+ weather[5] + ".svg") 
     $(".temp-five").text(Math.round(temperatues[5]) + "°")
     $(".humid-five").text(humidity[5] + "%");
@@ -174,7 +189,6 @@ function dayFiveDisplay (weather, temperatues, winds, humidity) {
 }
 
 
-// TIME DISPLAY
 // STORAGE FUNCTIONING AND PAGE
 // ADD COMMENTS
 // DO README
