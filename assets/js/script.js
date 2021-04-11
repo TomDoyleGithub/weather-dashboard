@@ -87,6 +87,15 @@ $(".search-button").on("click", function(event) {
     }
 })
 
+$(".location-list").on('click', '.loca', function (event) {
+    event.preventDefault();
+    var matchedElement = $(event.target);
+    hisLocation = matchedElement[0].innerHTML
+    coordsRequest(hisLocation);
+    $(".location-list").text("")
+    $(".save-section").css("display", "none");
+})
+
 var hisArr = [];
 var locArr = [];
 
@@ -102,7 +111,7 @@ function init (weather, temperatues, winds, humidity, uvIndex, offset) {
     var locPlaces = localStorage.getItem("places");
     locArr = locPlaces.split(",");
     locArr.forEach(function(location) {
-        $(".location-list").append("<section class='loca'>" + location + "</section>");
+        $(".location-list").append("<section class='loca' value='" + location + "'>" + location + "</section>");
     });
     // console.log(weather, temperatues, winds, humidity, uvIndex);
     timeDisplay(offset);
