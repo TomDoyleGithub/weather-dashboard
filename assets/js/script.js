@@ -99,6 +99,8 @@ $(".location-list").on('click', '.loca', function (event) {
 var hisArr = [];
 var locArr = [];
 
+
+
 function historyAdd(input) {
     hisArr.push(input);
     localStorage.setItem("places", hisArr);
@@ -109,10 +111,12 @@ function historyAdd(input) {
 function init (weather, temperatues, winds, humidity, uvIndex, offset) {
     $(".carousel-container").css("display", "block");
     var locPlaces = localStorage.getItem("places");
-    locArr = locPlaces.split(",");
-    locArr.forEach(function(location) {
+    if(locPlaces !== null) {
+        locArr = locPlaces.split(",");
+        locArr.forEach(function(location) {
         $(".location-list").append("<section class='loca' value='" + location + "'>" + location + "</section>");
-    });
+        });
+    };
     // console.log(weather, temperatues, winds, humidity, uvIndex);
     timeDisplay(offset);
     mainPageDisplay(weather, temperatues, winds, humidity, uvIndex);
