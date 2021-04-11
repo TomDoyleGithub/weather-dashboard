@@ -87,13 +87,23 @@ $(".search-button").on("click", function(event) {
     }
 })
 
+var hisArr = [];
+var locArr = [];
+
 function historyAdd(input) {
-    $(".location-list").append("<section class='loca'>" + input + "</section>")
+    hisArr.push(input);
+    localStorage.setItem("places", hisArr);
+    $(".location-list").text("")
 };
 
 // Initiation of page is run after the fetch requests - put this AT THE END AFTER REQUESTS
 function init (weather, temperatues, winds, humidity, uvIndex, offset) {
     $(".carousel-container").css("display", "block");
+    var locPlaces = localStorage.getItem("places");
+    locArr = locPlaces.split(",");
+    locArr.forEach(function(location) {
+        $(".location-list").append("<section class='loca'>" + location + "</section>");
+    });
     // console.log(weather, temperatues, winds, humidity, uvIndex);
     timeDisplay(offset);
     mainPageDisplay(weather, temperatues, winds, humidity, uvIndex);
@@ -132,8 +142,6 @@ function timeDisplay (offset) {
     $(".header-three").text(thirdDayDate);
     $(".header-four").text(fourthDayDate);
     $(".header-five").text(fifthDayDate);
-    
-    // THE USE THIS DATA WITH MOMENT TO DISPLAY ALL THINGS RELATED TO DATES
 }
 // The functions that displays the main display in the HTML
 function mainPageDisplay (weather, temperatues, winds, humidity, uvIndex) {
