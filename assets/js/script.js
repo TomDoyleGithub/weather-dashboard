@@ -210,6 +210,6 @@ function dayFiveDisplay (weather, temperatues, winds, humidity) {
 }
 
 
-// STORAGE FUNCTIONING AND PAGE
+
 // ADD COMMENTS
 // DO README
