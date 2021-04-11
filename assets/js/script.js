@@ -3,10 +3,12 @@ $("#search").on("click", function(){
     $(".search-section").css("display", "block");
 })
 
+// Displays section when hamburger icon is clicked
 $("#hamburger").on("click", function(){
     $(".save-section").css("display", "block");
 })
 
+// Hides the sections when the cross icon is clicked
 $(".cross").on("click", function() {
     $(".search-section").css("display", "none");
     $(".save-section").css("display", "none");
@@ -87,6 +89,7 @@ $(".search-button").on("click", function(event) {
     }
 })
 
+// Runs through the weather search function when the history locations are clicked
 $(".location-list").on('click', '.loca', function (event) {
     event.preventDefault();
     var matchedElement = $(event.target);
@@ -101,6 +104,7 @@ var locArr = [];
 
 
 
+// Adds searched input to local storage
 function historyAdd(input) {
     hisArr.push(input);
     localStorage.setItem("places", hisArr);
@@ -127,7 +131,7 @@ function init (weather, temperatues, winds, humidity, uvIndex, offset) {
     dayFiveDisplay(weather, temperatues, winds, humidity);
 }
 
-
+// This function gets the time of any location and displays it in the desired format
 function timeDisplay (offset) {
     d = new Date()
     localTime = d.getTime()
@@ -174,6 +178,7 @@ function mainPageDisplay (weather, temperatues, winds, humidity, uvIndex) {
     }
 }
 
+// These functions below display the weather data
 function dayOneDisplay (weather, temperatues, winds, humidity) {
     $(".day-one-icon").attr("src", "./assets/images/weather/"+ weather[1] + ".svg") 
     $(".temp-one").text(Math.round(temperatues[1]) + "°")
@@ -208,8 +213,3 @@ function dayFiveDisplay (weather, temperatues, winds, humidity) {
     $(".humid-five").text(humidity[5] + "%");
     $(".wind-five").text(winds[5])
 }
-
-
-
-// ADD COMMENTS
-// DO README
